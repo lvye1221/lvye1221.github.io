@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  
+	<style>
+	
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+
+	.p1 {
+		/* 背景颜色 */
+		/* background-color: rgb(42,182,96); */
+
+		height: 700px;
+
+		padding: 80px;
+
+	}
+
+	/* 定义样式 shield*/
+	.shield {
+		width: 600px;
+
+		/*居中
+			auto 代表自动计算
+		*/
+		margin: 0 auto 0 auto;
+	}
+	
+	/* 所有图片 */
+	.shield img {
+		width: 200px;
+		height: 200px;
+		/* 用于去掉图片间隙*/
+		display: block;
+
+		float: left;
+	}
+
+
+	.pic1 {
+		/* 位移 和 旋转
+			translate 位移
+				(200px, 300px) 分别代表 水平方向 和 垂直方向移动的距离
+				【注意】 x方向数值 和 y方向数值 以逗号分隔的
+		
+			rotate(45deg) 代表旋转 45deg 代表45度
+		*/
+		transform: translate(200px, 20px) rotate(45deg);
+	}
+
+	.pic2 {
+		transform: translate(0px, 120px) rotate(145deg);
+	}
+
+	.pic3 {
+		transform: translate(300px, -100px) rotate(-145deg);
+	}
+
+
+	/* 结束样式 
+	
+	.new .pic1  代表 .new 样式下面的 .pic1 样式元素
+
+	.new img  代表 .new 样式下面的 所有标签名为 img 的元素
+	*/
+	.new img {
+		transform: translate(0, 0) rotate(0deg);
+
+		/* 动画 渐变 设置
+			transition  动画设置
+			all			所有支持动画的属性
+			5s			代表动画执行时间是 5s，可以调整
+			ease-out    代表动画执行的速度变化
+			0.3s        代表0.3秒后执行
+		*/
+		transition: all 5s ease-out 0.3s;
+	}
+
+	</style>
+
+	<!-- 思路：
+		1. 建1个盒子，设置样式，铺满整个屏幕
+		2. 盾牌
+			（1）建立1个盒子
+			（2）插入小图片
+
+			如何让盾牌合体呢？
+				（1）换行
+				（2）控制小盒子的宽度呢？
+
+
+			如何调整盾牌的位置？
+				（1） 内边距 
+							盾牌的内边距    可以！
+							p1 的内边距     可以！   更好
+
+				（2） 外边距
+							盾牌的外边距    不可以！
+
+
+			如何让盾牌再重新合在一起呢？
+				定义1个样式，结束样式 new， 原始状态都归0
+	-->
+
+	<div class="p1">
+		
+		<div class="shield">
+			<!-- img 代表插入一张图片
+				   src 代表插入哪一张图片
+
+
+			-->
+			<img src="yangjie_01.png" class="pic2">
+			<img src="yangjie_02.png" class="pic1">
+			<img src="yangjie_03.png" class="pic3">
+			<img src="yangjie_04.png" class="pic2">
+			<img src="yangjie_05.png" class="pic1">
+			<img src="yangjie_06.png" class="pic1">
+			<img src="yangjie_07.png" class="pic2">
+			<img src="yangjie_08.png" class="pic1">
+			<img src="yangjie_09.png" class="pic3">
+
+
+		</div>
+
+	</div>
+
+
+	<!-- 实现自动合体的思路
+		1. 通过js延时2秒，自动给盾牌加上结束的样式
+	-->
+
+	<!-- 1. 引入库文件 
+				script 代表 js 程序
+				src    代表 引入的文件
+	-->
+	<script src="1.js"></script>
+
+	
+	<!-- 2. 延时添加样式
+	-->
+	<script>
+
+	// setTimeout 是系统提供的 延时工具，名字是区分大小写的
+	//      延时之后， 会自动执行 function() {}  大括号里面的内容
+	//                    function 都是格式
+	// 2000  代表延时的时间，单位是毫秒，所以2000相当于是 2秒
+	setTimeout(function() {
+		// 延时2秒后，执行这里的代码
+		// 让盾牌 添加 new 的样式
+
+		//  $(".shield") 代表 找到使用了 shield 样式的 元素，这里就是 盾牌的那个盒子
+		//    addClass   代表添加样式，注意区分大小写
+		$(".shield").addClass("new");
+
+	}, 2000);
+
+	</script>
+
+ </body>
+</html>
